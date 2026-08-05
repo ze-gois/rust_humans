@@ -47,7 +47,7 @@ impl Counterpoint {
                             .events()
                             .get(i)
                             .copied()
-                            .unwrap_or(Event::rest(super::rythm::Duration::QUARTER))
+                            .unwrap_or(Event::rest(super::rhythm::Duration::QUARTER))
                     })
                     .collect()
             })

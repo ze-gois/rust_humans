@@ -3,7 +3,7 @@
 use super::{
     note::Note,
     phrase::{Event, Phrase},
-    rythm::Duration,
+    rhythm::Duration,
 };
 
 #[derive(Debug, Clone, PartialEq)]

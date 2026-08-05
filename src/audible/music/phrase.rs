@@ -1,6 +1,6 @@
 //! Ordered musical phrases.
 
-use super::{note::Note, rythm::Duration};
+use super::{note::Note, rhythm::Duration};
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Event {

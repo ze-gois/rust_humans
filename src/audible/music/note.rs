@@ -114,3 +114,47 @@ mod tests {
         );
     }
 }
+
+/// Convert normalized playback progress into a melody index.
+pub fn active_note_index(note_count: usize, progress: f32) -> usize {
+    if note_count == 0 {
+        0
+    } else {
+        ((progress.clamp(0.0, 0.999_999) * note_count as f32).floor() as usize).min(note_count - 1)
+    }
+}
+
+/// Return a non-empty pitch range suitable for graph scaling.
+pub fn note_range(melody: &[i32]) -> (i32, i32) {
+    let min_note = melody.iter().copied().min().unwrap_or(-12);
+    let max_note = melody.iter().copied().max().unwrap_or(12);
+
+    if min_note == max_note {
+        (min_note - 1, max_note + 1)
+    } else {
+        (min_note, max_note)
+    }
+}
+
+/// Convert a semitone offset from A4 into a MIDI-style pitch class.
+pub fn pitch_class_from_semitone(semitone_from_a4: i32) -> i32 {
+    (69 + semitone_from_a4).rem_euclid(12)
+}
+
+/// Human-readable pitch-class name using sharps.
+pub fn pitch_class_name(pitch_class: i32) -> &'static str {
+    const NAMES: [&str; 12] = [
+        "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B",
+    ];
+
+    NAMES[pitch_class.rem_euclid(12) as usize]
+}
+
+/// Human-readable note name with octave, e.g. `A4` or `C#5`.
+pub fn get_name_from_semitone(semitone_from_a4: i32) -> String {
+    let midi_note = 69 + semitone_from_a4;
+    let name = pitch_class_name(midi_note.rem_euclid(12));
+    let octave = midi_note.div_euclid(12) - 1;
+
+    format!("{name}{octave}")
+}
