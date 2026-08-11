@@ -1,13 +1,13 @@
 [package]
 name = "humans"
-version = "0.0.1"
+version = "0.2.0"
 edition = "2024"
 authors = ["José Gois <ze.gois.00@gmail.com>"]
 description = "humans computer interface library"
-documentation = "https://docs.rs/humans"
+documentation = "https://userspace.zegois.com/humans/doc"
 repository = "https://github.com/ze-gois/rust_humans"
 readme = "README.md"
-homepage = "https://userspace.builders"
+homepage = "https://userspace.zegois.com/humans"
 license-file = "LICENSE"
 keywords = ["interface", "CHI", "physics", "audio", "display"]
 categories = ["no-std"]
@@ -72,7 +72,7 @@ required-features = []        # nenhuma feature obrigatória
 doc = true                     # gera docs
 
 [dependencies]
-ample = { path = "../ample", version = "0.1.128" }
+ample = { path = "../ample", version = "0.2.0" }
 
 [build-dependencies]
 cc = "1.0"
