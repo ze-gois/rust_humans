@@ -121,7 +121,7 @@ pub fn active_note_index(note_count: usize, progress: f32) -> usize {
     if note_count == 0 {
         0
     } else {
-        libm::floorf(progress.clamp(0.0, 0.999_999) * note_count as f32) as usize.min(note_count - 1)
+        (libm::floorf(progress.clamp(0.0, 0.999_999) * note_count as f32) as usize).min(note_count - 1)
     }
 }
 
