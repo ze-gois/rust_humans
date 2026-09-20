@@ -19,7 +19,7 @@ impl EqualTemperament {
     }
 
     pub fn frequency_for_ratio(&self, semitones: f32) -> f32 {
-        self.a4_hz * 2.0_f32.powf(semitones / 12.0)
+        self.a4_hz * ample::math::pow(2.0, semitones / 12.0)
     }
 }
 

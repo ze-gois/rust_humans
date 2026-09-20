@@ -1,5 +1,7 @@
 //! Common diatonic scales.
 
+use ample::Vec;
+
 use super::note::Note;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

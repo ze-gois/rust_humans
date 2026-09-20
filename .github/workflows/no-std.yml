@@ -1,0 +1,39 @@
+name: no_std
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  no-std:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout humans
+        uses: actions/checkout@v4
+
+      - name: Checkout ample
+        uses: actions/checkout@v4
+        with:
+          repository: ze-gois/rust_ample
+          ref: main
+          path: _ample
+
+      - uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: rust-src
+
+      - name: Patch ample locally
+        run: |
+          mkdir -p .cargo
+          cat > .cargo/config.toml <<'EOF'
+          [patch.crates-io]
+          ample = { path = "_ample" }
+          EOF
+
+      - name: Check humans without std
+        run: cargo check --lib --target x86_64-unknown-none -Z build-std=core,alloc

@@ -1,5 +1,7 @@
 //! Ordered musical phrases.
 
+use ample::Vec;
+
 use super::{note::Note, rhythm::Duration};
 
 #[derive(Debug, Clone, Copy, PartialEq)]

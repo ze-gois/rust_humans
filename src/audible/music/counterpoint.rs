@@ -1,5 +1,7 @@
 //! Small helpers for combining independent voices.
 
+use ample::Vec;
+
 use super::phrase::{Event, Phrase};
 
 /// A set of voices intended to be played at the same time.
