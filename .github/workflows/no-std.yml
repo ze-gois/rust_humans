@@ -32,7 +32,7 @@ jobs:
           mkdir -p .cargo
           cat > .cargo/config.toml <<'EOF'
           [patch.crates-io]
-          ample = { path = "../_ample" }
+          ample = { path = "_ample" }
           EOF
 
       - name: Check humans without std
