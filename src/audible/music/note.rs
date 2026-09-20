@@ -1,6 +1,7 @@
 //! Musical notes and pitch classes.
 
-use std::fmt;
+use alloc::{format, string::String};
+use core::{fmt, write};
 
 use super::temperament::{EqualTemperament, Temperament};
 
