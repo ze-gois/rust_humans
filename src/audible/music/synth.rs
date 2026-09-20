@@ -85,7 +85,7 @@ pub fn render_notes(sample_rate: u32, bpm: f32, melody: &[i32]) -> Vec<f32> {
     let sample_rate = sample_rate.max(8_000) as f32;
     let seconds_per_beat = 60.0 / bpm.clamp(30.0, 260.0);
     let note_seconds = seconds_per_beat * BEATS_PER_NOTE;
-    let samples_per_note = libm::roundf(sample_rate * note_seconds) as usize;
+    let samples_per_note = ample::math::round(sample_rate * note_seconds) as usize;
 
     let mut samples = Vec::with_capacity(samples_per_note * melody.len());
 
@@ -98,10 +98,10 @@ pub fn render_notes(sample_rate: u32, bpm: f32, melody: &[i32]) -> Vec<f32> {
             let absolute_t = (note_index * samples_per_note + i) as f32 / sample_rate;
 
             let envelope = envelope(i, samples_per_note, sample_rate);
-            let vibrato = 1.0 + 0.004 * libm::sinf(TAU * 5.0 * absolute_t);
+            let vibrato = 1.0 + 0.004 * ample::math::sin(TAU * 5.0 * absolute_t);
 
-            let fundamental = libm::sinf(TAU * frequency * vibrato * t);
-            let overtone = 0.35 * libm::sinf(TAU * harmonic * vibrato * t);
+            let fundamental = ample::math::sin(TAU * frequency * vibrato * t);
+            let overtone = 0.35 * ample::math::sin(TAU * harmonic * vibrato * t);
             let sample = (fundamental + overtone) * envelope * MASTER_GAIN;
 
             samples.push(sample.clamp(-1.0, 1.0));
@@ -115,7 +115,7 @@ pub fn render_notes(sample_rate: u32, bpm: f32, melody: &[i32]) -> Vec<f32> {
 ///
 /// The formula is `440 * 2^(n / 12)`, where `n` is the semitone offset from A4.
 pub fn frequency_for_semitone(semitone_from_a4: i32) -> f32 {
-    440.0 * libm::powf(2.0, semitone_from_a4 as f32 / 12.0)
+    440.0 * ample::math::pow(2.0, semitone_from_a4 as f32 / 12.0)
 }
 
 /// Simple linear attack/release envelope for a single note.
