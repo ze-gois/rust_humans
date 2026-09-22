@@ -1,6 +1,6 @@
 //! Common diatonic scales.
 
-use ample::Vec;
+use ample::r#struct::Vec;
 
 use super::note::Note;
 
