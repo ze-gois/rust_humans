@@ -1,6 +1,6 @@
 //! Ordered musical phrases.
 
-use ample::r#struct::Vec;
+use ample::r#type::Vec;
 
 use super::{note::Note, rhythm::Duration};
 
