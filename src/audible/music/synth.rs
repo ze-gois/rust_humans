@@ -5,7 +5,7 @@
 //! mono `f32` PCM samples. The WASM app copies those samples into a Web Audio
 //! `AudioBuffer`, while native tests use the same code path.
 
-use ample::Vec;
+use ample::r#struct::Vec;
 use core::f32::consts::TAU;
 
 // use wasm_bindgen::prelude::*;
