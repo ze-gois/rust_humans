@@ -1,6 +1,6 @@
 //! Small helpers for combining independent voices.
 
-use ample::Vec;
+use ample::r#struct::Vec;
 
 use super::phrase::{Event, Phrase};
 
