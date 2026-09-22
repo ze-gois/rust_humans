@@ -4,7 +4,7 @@
 //! pitch class such as `C` can occur in many octaves, so graph edits choose the
 //! closest semitone offset to the current musical context.
 
-use ample::r#struct::Vec;
+use ample::r#type::Vec;
 
 /// Pick the note nearest `previous` that belongs to `pitch_class`.
 pub fn semitone_for_pitch_class_near(pitch_class: i32, previous: i32) -> i32 {
